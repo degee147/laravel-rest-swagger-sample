@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Returns Services API",
+        "description": "API documentation",
+        "contact": {
+            "email": "kenwaribo@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://localhost:8000/",
+            "description": "Returns App API"
+        }
+    ],
+    "paths": {
+        "/": {},
+        "/articles": {
+            "get": {
+                "summary": "Get Articles",
+                "description": "Returns a paginated list of articles",
+                "operationId": "89181b74a8aa4d580750ede6aa32f92a",
+                "responses": {
+                    "200": {
+                        "description": "Everything OK"
+                    }
+                }
+            }
+        },
+        "/articles/{id}": {
+            "get": {
+                "summary": "Get a single Article",
+                "description": "Returns a single article",
+                "operationId": "126f0079c2def3834cf2c4a2456d16f9",
+                "parameters": [
+                    {
+                        "name": "article_id",
+                        "in": "path",
+                        "description": "ID of article to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything OK"
+                    }
+                }
+            }
+        },
+        "/articles/{id}/like": {
+            "get": {
+                "summary": "Like a single Article",
+                "operationId": "003c3b0a96fe0f950b7e0cd81cffe25e",
+                "parameters": [
+                    {
+                        "name": "article_id",
+                        "in": "path",
+                        "description": "ID of article to like",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything OK"
+                    }
+                }
+            }
+        },
+        "/articles/{id}/view": {
+            "get": {
+                "summary": "Add view count to a single Article",
+                "operationId": "0ca1522daebce931dff114dede64762c",
+                "parameters": [
+                    {
+                        "name": "article_id",
+                        "in": "path",
+                        "description": "ID of article to add view count",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything OK"
+                    }
+                }
+            }
+        },
+        "articles/{id}/comment": {
+            "post": {
+                "summary": "Add a comment",
+                "description": "Send params in form-data. Add Accept:application/json in header",
+                "operationId": "comment",
+                "parameters": [
+                    {
+                        "name": "subject",
+                        "in": "query",
+                        "description": "subject",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "description": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
