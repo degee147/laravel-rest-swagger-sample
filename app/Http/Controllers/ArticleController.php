@@ -5,13 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Services\TelegramService;
 use App\Ultainfinity\Ultainfinity;
 use App\Http\Resources\ArticleResource;
 use App\Http\Requests\CommentPostRequest;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class ArticleController extends Controller
 {
     use Ultainfinity;
+
+    public function getUpdates()
+    {
+        $updates = (new TelegramService)->getUpdates();
+        return (json_encode($updates));
+        // return response()->json(['data' => "some data"], 200);
+    }
+
+    public function getUpdates2()
+    {
+        $updates = Telegram::getUpdates();
+        return (json_encode($updates));
+        // return response()->json(['data' => "some data"], 200);
+    }
+
+
+
     /**
      * @OA\Get(
      *     path="/articles",
@@ -60,7 +79,7 @@ class ArticleController extends Controller
         return $this->AppResponse('failed', 'Article not found', 404);
     }
 
-     /**
+    /**
      * @OA\Get(
      *     path="/articles/{id}/like",
      *     summary="Like a single Article",
@@ -93,7 +112,7 @@ class ArticleController extends Controller
         return $this->AppResponse('failed', 'Invalid article', 404);
     }
 
-      /**
+    /**
      * @OA\Get(
      *     path="/articles/{id}/view",
      *     summary="Add view count to a single Article",

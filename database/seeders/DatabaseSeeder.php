@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       Tag::factory(50)->create();
+        Tag::factory(50)->create();
         for ($i = 0; $i < 50; $i++) {
 
             $title = $this->faker->sentence();

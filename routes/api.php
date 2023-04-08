@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //had to comment out ->prefix('api) from RouteServiceProvider class
 //the requested endpoints in the test instruction didn't specify adding the api prefix in the url path
 Route::prefix('articles')->controller(ArticleController::class)->group(function () {
+    Route::get('/getupdates', 'getUpdates')->name('getUpdates');
+    Route::get('/getupdates2', 'getUpdates2')->name('getUpdates2');
     Route::get('/', 'index')->name('showArticles');
     Route::get('/{id}', 'show')->name('singleArticle');
     Route::post('/{id}/comment', 'comment')->name('addComment');
